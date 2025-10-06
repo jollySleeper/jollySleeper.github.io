@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found - jollySleeper's HappyLand</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌈</text></svg>">
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        window.onload = () => {
+            // Map of lowercase project names to their proper Title Case versions
+            const projectMap = {
+                'privylease': 'Privylease',
+                // Add more projects here as needed, e.g.:
+                // 'quoterm': 'QuoTerm',
+                // 'sunshine': 'Sunshine',
+            };
+
+            const currentURL = window.location.href;
+            const pathname = window.location.pathname;
+            
+            // Extract the project name from the path (e.g., /privylease or /privylease/)
+            const pathParts = pathname.split('/').filter(part => part.length > 0);
+            
+            if (pathParts.length > 0) {
+                const projectName = pathParts[0];
+                const projectNameLower = projectName.toLowerCase();
+                
+                // Check if we have a Title Case mapping for this project
+                if (projectMap[projectNameLower] && projectName !== projectMap[projectNameLower]) {
+                    // Reconstruct URL with proper Title Case
+                    pathParts[0] = projectMap[projectNameLower];
+                    const correctedPath = '/' + pathParts.join('/') + window.location.search + window.location.hash;
+                    const correctedURL = window.location.origin + correctedPath;
+                    
+                    // Redirect to the correct Title Case URL
+                    window.location.replace(correctedURL);
+                }
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="container fade-in">
+        <header style="text-align: center; padding: 4rem 0;">
+            <h1 style="font-size: 4rem; margin-bottom: 1rem;">404 <span class="emoji">😕</span></h1>
+            <h2>Oops! Page Not Found</h2>
+            <p style="font-size: 1.1rem; color: var(--text-muted); margin-top: 1rem; margin-bottom: 2rem;">
+                The page you're looking for seems to have wandered off into the digital wilderness.
+            </p>
+            <p style="font-size: 1rem; color: var(--text-muted);">
+                <em>Checking if you meant to visit a different case variation...</em>
+            </p>
+            <div style="margin-top: 2rem;">
+                <a href="/" style="display: inline-block; padding: 0.75rem 1.5rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 8px; font-weight: 500; transition: transform 0.2s;">
+                    Take Me Home 🏠
+                </a>
+            </div>
+        </header>
+    </div>
+</body>
+</html>
+
